@@ -1,7 +1,7 @@
 import math
 from unittest import TestCase
 
-from .fracs import *
+from ..factoriocalc.fracs import *
 
 class TestFracNonFinite(TestCase):
     @classmethod
