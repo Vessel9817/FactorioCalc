@@ -281,11 +281,13 @@ class Frac(tuple,Rational):
         else:
             return tuple.__new__(Frac, (-self[0], self[1]))
 
-    def __trunc__(self):
+    def __int__(self):
         if self[0] >= 0:
             return self[0] // self[1]
         else:
             return -(-self[0] // self[1])
+
+    __trunc__ = __int__
 
     def __ceil__(self):
         div, rem = divmod(self[0], self[1])
@@ -412,6 +414,7 @@ class NanType(numbers.Number):
     def _invalidConv(self):
         raise ValueError("attempt to convert NaN to an integer")
 
+    __int__ = _invalidConv
     __trunc__ = _invalidConv
     __ceil__ = _invalidConv
     __floor__ = _invalidConv
